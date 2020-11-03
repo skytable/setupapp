@@ -1,0 +1,111 @@
+<!--
+ Created on Tue Nov 03 2020
+ 
+ This file is a part of the TerrabaseDB setup app
+ Copyright (c) 2020, Sayan Nandan <ohsayan at outlook dot com>
+ 
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU Affero General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU Affero General Public License for more details.
+
+ You should have received a copy of the GNU Affero General Public License
+ along with this program. If not, see <https://www.gnu.org/licenses/>.
+ -->
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Setup App | TerrabaseDB</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link href="app.css" rel="stylesheet">
+</head>
+
+<body>
+  <noscript>
+    This app won't work without JavaScript!
+  </noscript>
+  <div class="webapp">
+    <div class="text-center">
+      <a href="https://github.com/terrabasedb/terrabasedb"><img class="mb-4" src="assets/img/logo.png" alt="" width="72"
+          height="72"></a>
+      <h1 class="h4 mb-3 font-weight-normal">TerrabaseDB Configuration</h1>
+    </div>
+    <div class="form-group">
+      <label for="host">Host</label> <i data-toggle="tooltip" class="fa fa-info-circle"
+        title="Any valid IPv4/IPv6 address"></i>
+      <input type="text" class="form-control" id="host" placeholder="127.0.0.1">
+    </div>
+    <div class="form-group">
+      <label for="port">Port</label> <i data-toggle="tooltip" class="fa fa-info-circle"
+        title="Any valid integer in the range 0 to 65536"></i>
+      <input type="text" class="form-control" id="port" placeholder="2003">
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col-md-5">
+          <p class="font-weight-bold">Snapshots <i data-toggle="tooltip" class="fa fa-info-circle"
+              title="Snapshots are backups of data at specific points in time"></i></p>
+        </div>
+        <div class="col-md-4">
+          <input class="form-check-input" type="radio" name="snapshot" id="snap-y" value="y" onclick="snapBtn()">
+          <label class="form-check-label" for="snap-y">Enabled</label>
+        </div>
+        <div class="col-md-3">
+          <input class="form-check-input" type="radio" name="snapshot" id="snap-n" value="n" checked
+            onclick="snapBtn()">
+          <label class="form-check-label" for="snap-n">Disabled</label>
+        </div>
+      </div>
+      <label for="snapevery">Snapshot Duration</label> <i data-toggle="tooltip" class="fa fa-info-circle"
+        title="The number of seconds after which a snapshot should be created, periodically"></i>
+      <input type="text" class="form-control" id="snapevery" disabled>
+      <label for="snapkeep">Number of snapshots</label> <i data-toggle="tooltip" class="fa fa-info-circle"
+        title="The number of most recent snapshots to keep. Settings this to '0' will save all the snapshots"></i>
+      <input type="text" class="form-control" id="snapkeep" disabled>
+    </div>
+    <div class="form-group">
+      <div class="form-row">
+        <div class="col-md-5">
+          <p class="font-weight-bold">BGSAVE <i data-toggle="tooltip" class="fa fa-info-circle"
+              title="This enables/disables automated background saving of data. We strongly recommend you to keep this enabled"></i>
+          </p>
+        </div>
+        <div class="col-md-4">
+          <input class="form-check-input" type="radio" name="bgsave" id="bgsave-y" value="y" checked
+            onclick="bgsaveBtn()">
+          <label class="form-check-label" for="bgsave-y">Enabled</label>
+        </div>
+        <div class="col-md-3">
+          <input class="form-check-input" type="radio" name="bgsave" id="bgsave-n" value="n" onclick="bgsaveBtn()">
+          <label class="form-check-label" for="bgsave-n" onclick="bgsaveBtn()">Disabled</label>
+        </div>
+      </div>
+      <label for="bgsavedur">BGSAVE duration</label> <i data-toggle="tooltip" class="fa fa-info-circle"
+        title="The number of seconds after which BGSAVE should be triggered"></i>
+      <input type="text" class="form-control" id="bgsavedur" placeholder="120">
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" onclick="check()">Generate</button>
+    <div class="alert alert-success alert-dismissible fade show my-3" role="alert" id="res" hidden="true">
+      <strong>Done!</strong> Start TerrabaseDB with <p class="form-control border-success" id="launch-code"
+        style="resize: none;"></p>
+    </div>
+    <p class="mt-5 mb-3 text-muted text-center">This website is <a
+        href="https://github.com/terrabasedb/setupapp">open-source</a>!<br>Copyright &copy; 2020 Sayan Nandan</p>
+  </div>
+  <script src="app.js"></script>
+</body>
+
+</html>
