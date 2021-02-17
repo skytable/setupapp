@@ -54,20 +54,23 @@ function bgsaveBtn() {
   }
 }
 function check() {
-  var command = "tdb";
+  var command = "sdb";
   var host_val = host.value.toString();
   if (host_val.length === 0) {
     host_val = "127.0.0.1";
   }
   command += " -h " + host_val;
-  var port_val = parseInt(port.value.toString());
-  if ((isNaN(port_val)) && port_val.length === 0) {
-    alert("Invalid value for port!");
-    res.hidden = true;
-    scrollUp();
-    return;
-  } else {
-    port_val = "2003";
+  var port_val = 2003;
+  if (port.value.length != 0) {
+    var pv = parseInt(port.value.toString());
+    if (isNaN(pv)) {
+      alert("Invalid value for port!");
+      res.hidden = true;
+      scrollUp();
+      return;
+    } else {
+      port_val = pv;
+    }
   }
   if ((port_val > 65535) || (port_val < 0)) {
     alert("Invalid port range!");
