@@ -1,5 +1,7 @@
 # Skytable Setup App
 
+> **⚠️ Warning:** As of June 2021, the Skytable project no longer maintains this web app. Please refer to the documentation to learn about configuring your installation
+
 [![App](https://img.shields.io/badge/try-the%20app-blueviolet?style=for-the-badge
 )](https://skytable.github.io/setupapp)
 
